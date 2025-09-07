@@ -1,0 +1,2 @@
+# tc
+tính cách
