@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm tính cách</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #555;
+        }
+        .question-group {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .question-group:last-child {
+            border-bottom: none;
+        }
+        .question {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .question p {
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .options label:hover {
+            background-color: #e2e6ea;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 200px;
+            padding: 12px;
+            margin: 30px auto 0;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            text-align: center;
+        }
+        #result-section h2 {
+            color: #28a745;
+        }
+        #result-section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        #result-section strong {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Trắc nghiệm tính cách</h1>
+    <p style="text-align: center;">Vui lòng trả lời 70 câu hỏi sau đây để khám phá loại tính cách của bạn.</p>
+
+    <form id="quiz-form">
+        <div class="question-group">
+            <div class="question">
+                <p>1. Trong một buổi tiệc, bạn sẽ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A">Nói chuyện với tất cả mọi người, kể cả người lạ</label>
+                    <label><input type="radio" name="q1" value="B">Nói chuyện với những người bạn quen</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>2. Xu hướng nào trong bạn mạnh hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A">Hướng tới những điều thực tế và cụ thể</label>
+                    <label><input type="radio" name="q2" value="B">Hướng tới các dự đoán trong tưởng tượng</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>3. Tính hướng nào khiến bạn cảm thấy tệ hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A">Mọi thứ mông lung, không rõ ràng</label>
+                    <label><input type="radio" name="q3" value="B">Nhàm chán, đơn điệu</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>4. Bạn thấy ấn tượng bởi?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A">Nguyên lí, nguyên tắc</label>
+                    <label><input type="radio" name="q4" value="B">Cảm xúc, tình cảm</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>5. Bạn có xu hướng nghiêng về?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="A">Những gì có tính thuyết phục</label>
+                    <label><input type="radio" name="q5" value="B">Hướng gì cảm động</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>6. Bạn thích làm việc?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="A">Theo thời hạn (deadline)</label>
+                    <label><input type="radio" name="q6" value="B">Tùy hứng</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>7. Khi lựa chọn, bạn thường?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="A">Khá cẩn thận, xem xét kĩ lưỡng</label>
+                    <label><input type="radio" name="q7" value="B">Tin vào cảm giác lúc lựa chọn</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>8. Tại các buổi gặp mặt, bạn sẽ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A">Ở lại đến cuối buổi, càng lúc càng phấn khích</label>
+                    <label><input type="radio" name="q8" value="B">Ra về sớm và cảm thấy mệt</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>9. Tupp người nào sẽ thu hút bạn hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A">Người có đầu óc xét đoán, biết điều</label>
+                    <label><input type="radio" name="q9" value="B">Người có khả năng tưởng tượng phong phú</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>10. Bạn hứng thú hơn với?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="A">Những việc thực tế xảy ra</label>
+                    <label><input type="radio" name="q10" value="B">Những việc có khả năng xảy ra</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <div class="question">
+                <p>11. Khi đánh giá người khác, bạn thường?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="A">Dựa trên các quy định, luật lệ</label>
+                    <label><input type="radio" name="q11" value="B">Dựa trên hoàn cảnh cụ thể</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>12. Khi tiếp cận người khác, bạn nghiêng về?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="A">Tiếp cận khách quan</label>
+                    <label><input type="radio" name="q12" value="B">Tiếp cận cá nhân</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>13. Phong cách sống với bạn hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="A">Đúng giờ</label>
+                    <label><input type="radio" name="q13" value="B">Nhàn nhã, thoải mái</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>14. Bạn bồn chồn khi có những việc?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="A">Chưa hoàn thiện</label>
+                    <label><input type="radio" name="q14" value="B">Đã hoàn thiện</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>15. Bạn là người?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="A">Luôn nắm bắt kịp thời thông tin về các vấn đề của mọi người</label>
+                    <label><input type="radio" name="q15" value="B">Thường biết thông tin sau</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>16. Với các công việc thông thường, bạn nghiêng về cách?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="A">Làm theo cách thông thường</label>
+                    <label><input type="radio" name="q16" value="B">Làm theo cách của riêng mình</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>17. Theo bạn, các nhà văn nên?</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="A">Viết những gì nghĩ, và nghĩ những gì họ viết, một cách rõ ràng</label>
+                    <label><input type="radio" name="q17" value="B">Dựa trên sự việc bằng cách so sánh, liên tưởng</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>18. Điều gì lôi cuốn bạn hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="A">Sự nhất quán về tư duy, suy nghĩ</label>
+                    <label><input type="radio" name="q18" value="B">Sự hòa hợp trong các mối quan hệ con người</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>19. Bạn cảm thấy thoải mái hơn khi đưa ra nhận xét?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="A">Một cách logic</label>
+                    <label><input type="radio" name="q19" value="B">Một cách có ý nghĩa, có giá trị</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>20. Bạn thích những điều?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="A">Được định trước</label>
+                    <label><input type="radio" name="q20" value="B">Chưa được quyết định</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <div class="question">
+                <p>21. Bạn là người?</p>
+                <div class="options">
+                    <label><input type="radio" name="q21" value="A">Nghiêm túc và quyết đoán</label>
+                    <label><input type="radio" name="q21" value="B">Tự tính, thoải mái</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>22. Khi nói chuyện điện thoại, bạn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q22" value="A">Hiếm khi băn khoăn đến những điều mình sẽ nói</label>
+                    <label><input type="radio" name="q22" value="B">Thường chuẩn bị trước những điều mình sẽ nói</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>23. Theo bạn, "các sự việc, sự kiện"?</p>
+                <div class="options">
+                    <label><input type="radio" name="q23" value="A">"Bản thân nó giữ chính cho chính nó"</label>
+                    <label><input type="radio" name="q23" value="B">Nó là bằng chứng gợi tích cho các quy tắc, quy luật</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>24. Những người có tầm nhìn xa?</p>
+                <div class="options">
+                    <label><input type="radio" name="q24" value="A">Ở mức độ nào đó, họ thường gây khó chịu cho người khác</label>
+                    <label><input type="radio" name="q24" value="B">Khá thú vị</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>25. Bạn là người?</p>
+                <div class="options">
+                    <label><input type="radio" name="q25" value="A">Có cái đầu lạnh</label>
+                    <label><input type="radio" name="q25" value="B">Có trái tim ấm</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>26. Điều nào tồi tệ hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q26" value="A">Không công bằng</label>
+                    <label><input type="radio" name="q26" value="B">Tàn nhẫn</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>27. Mọi người nên để các sự kiện xảy ra?</p>
+                <div class="options">
+                    <label><input type="radio" name="q27" value="A">Theo sự lựa chọn và cân nhắc kĩ lưỡng</label>
+                    <label><input type="radio" name="q27" value="B">Đến ra ngẫu nhiên, tự nhiên</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>28. Bạn cảm thấy thoải mái hơn khi?</p>
+                <div class="options">
+                    <label><input type="radio" name="q28" value="A">Đã mua một thứ gì đó</label>
+                    <label><input type="radio" name="q28" value="B">Có khả năng và sự lựa chọn để mua</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>29. Trong công ty, bạn là người?</p>
+                <div class="options">
+                    <label><input type="radio" name="q29" value="A">Nói những câu chuyện</label>
+                    <label><input type="radio" name="q29" value="B">Gọi người khác khởi xướng để nói chuyện</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>30. Những người được mọi người chấp nhận, bạn sẽ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q30" value="A">Tin tưởng vào những điều đó và những nghi ngờ</label>
+                    <label><input type="radio" name="q30" value="B">Xem xét lại tính đúng đắn của những điều đó</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <div class="question">
+                <p>31. Trẻ em thường không?</p>
+                <div class="options">
+                    <label><input type="radio" name="q31" value="A">Tự mình phát huy hết năng lực</label>
+                    <label><input type="radio" name="q31" value="B">Thỏa mãn hết trí tưởng tượng của mình</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>32. Khi đưa ra các quyết định, bạn thiên về?</p>
+                <div class="options">
+                    <label><input type="radio" name="q32" value="A">Các tiêu chuẩn, quy định</label>
+                    <label><input type="radio" name="q32" value="B">Cảm xúc, cảm nhận</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>33. Bạn nghiêng về tính cách?</p>
+                <div class="options">
+                    <label><input type="radio" name="q33" value="A">Chắc chắn hơn là nhẹ nhàng</label>
+                    <label><input type="radio" name="q33" value="B">Nhẹ nhàng hơn là chắc chắn</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>34. Khả năng nào đáng khâm phục hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q34" value="A">Khả năng tổ chức và làm việc có phương pháp</label>
+                    <label><input type="radio" name="q34" value="B">Khả năng thích ứng và xoay sở trước mọi tình huống</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>35. Bạn đề cao?</p>
+                <div class="options">
+                    <label><input type="radio" name="q35" value="A">Sự chắc chắn</label>
+                    <label><input type="radio" name="q35" value="B">Sự cởi mở</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>36. Đối mặt với những vấn đề mới, bạn thường?</p>
+                <div class="options">
+                    <label><input type="radio" name="q36" value="A">Thấy thích và hào hứng</label>
+                    <label><input type="radio" name="q36" value="B">Cảm thấy mệt mỏi</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>37. Thông tin thì bạn là?</p>
+                <div class="options">
+                    <label><input type="radio" name="q37" value="A">Người thực tế</label>
+                    <label><input type="radio" name="q37" value="B">Người có khả năng tưởng tượng phong phú</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>38. Bạn thường có xu hướng xem người khác?</p>
+                <div class="options">
+                    <label><input type="radio" name="q38" value="A">Có thể làm được việc gì hữu ích</label>
+                    <label><input type="radio" name="q38" value="B">Xem người khác sẽ nghĩ và cảm nhận như thế nào</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>39. Bạn cảm thấy thoải mái hơn khi?</p>
+                <div class="options">
+                    <label><input type="radio" name="q39" value="A">Thảo luận một vấn đề kĩ lưỡng, triệt để</label>
+                    <label><input type="radio" name="q39" value="B">Đạt được thỏa thuận, sự nhất trí về vấn đề</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>40. Cái đầu hay trái tim chi phối bạn nhiều hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q40" value="A">Cái đầu</label>
+                    <label><input type="radio" name="q40" value="B">Trái tim</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <div class="question">
+                <p>41. Bạn thích công việc?</p>
+                <div class="options">
+                    <label><input type="radio" name="q41" value="A">Được giao trọn gói, làm xong hết rồi bàn giao</label>
+                    <label><input type="radio" name="q41" value="B">Công việc làm hàng ngày, theo lịch</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>42. Bạn có xu hướng tìm kiếm những điều?</p>
+                <div class="options">
+                    <label><input type="radio" name="q42" value="A">Theo trật tự, thứ tự</label>
+                    <label><input type="radio" name="q42" value="B">Ngẫu nhiên</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>43. Bạn thích kiểu nào hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q43" value="A">Nhiều bạn bè với mức độ tiếp xúc ngắn gọn</label>
+                    <label><input type="radio" name="q43" value="B">Một vài bạn thân với mức độ tiếp xúc sâu</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>44. Bạn thường dựa vào?</p>
+                <div class="options">
+                    <label><input type="radio" name="q44" value="A">Sự kiện, thông tin</label>
+                    <label><input type="radio" name="q44" value="B">Nguyên lí, nguyên tắc</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>45. Bạn hứng thú với việc gì hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q45" value="A">Sản xuất và phân phối</label>
+                    <label><input type="radio" name="q45" value="B">Thiết kế, nghiên cứu</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>46. Bạn thích được khen là?</p>
+                <div class="options">
+                    <label><input type="radio" name="q46" value="A">Một người có logic rất tốt</label>
+                    <label><input type="radio" name="q46" value="B">Một người rất tình cảm, tinh tế</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>47. Bạn thấy điều nào ở mình giá trị hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q47" value="A">Kiên định, vững vàng</label>
+                    <label><input type="radio" name="q47" value="B">Toàn tâm, cống hiến</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>48. Bạn thường thích?</p>
+                <div class="options">
+                    <label><input type="radio" name="q48" value="A">Một tuyên bố cuối cùng, không thay đổi</label>
+                    <label><input type="radio" name="q48" value="B">Một tuyên bố dự kiến, ban đầu</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>49. Bạn thấy thoải mái hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q49" value="A">Trước khi đưa ra quyết định</label>
+                    <label><input type="radio" name="q49" value="B">Sau khi đưa ra quyết định</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>50. Bạn có thấy mình?</p>
+                <div class="options">
+                    <label><input type="radio" name="q50" value="A">Dễ dàng bắt chuyện với người lạ</label>
+                    <label><input type="radio" name="q50" value="B">Chỉ ở điều dễ nói với người lạ</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <div class="question">
+                <p>51. Bạn có xu hướng tin tưởng vào?</p>
+                <div class="options">
+                    <label><input type="radio" name="q51" value="A">Kinh nghiệm của mình</label>
+                    <label><input type="radio" name="q51" value="B">Linh cảm của mình</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>52. Bạn cho mình là người như thế nào?</p>
+                <div class="options">
+                    <label><input type="radio" name="q52" value="A">Là người thực tế hơn là khéo léo, mưu trí</label>
+                    <label><input type="radio" name="q52" value="B">Là người khéo léo, mưu trí hơn là thực tế</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>53. Theo bạn ai sẽ là người đáng được khen ngợi?</p>
+                <div class="options">
+                    <label><input type="radio" name="q53" value="A">Một người giàu lý trí</label>
+                    <label><input type="radio" name="q53" value="B">Một người giàu cảm xúc</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>54. Bạn có xu hướng hiểu hơn về?</p>
+                <div class="options">
+                    <label><input type="radio" name="q54" value="A">Công bằng, vô tư</label>
+                    <label><input type="radio" name="q54" value="B">Thông cảm, đồng cảm</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>55. Mọi việc sẽ hợp lý hơn nếu?</p>
+                <div class="options">
+                    <label><input type="radio" name="q55" value="A">Được chuẩn bị trước</label>
+                    <label><input type="radio" name="q55" value="B">Diễn ra tự nhiên</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>56. Mọi việc?</p>
+                <div class="options">
+                    <label><input type="radio" name="q56" value="A">Có thể nói chuyện để giải quyết được</label>
+                    <label><input type="radio" name="q56" value="B">Nên để mọi việc diễn ra ngẫu nhiên theo điều kiện hoàn cảnh</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>57. Khi chuông điện thoại reo, bạn sẽ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q57" value="A">Là người đầu tiên nhắc máy để nghe</label>
+                    <label><input type="radio" name="q57" value="B">Hi vọng có người khác sẽ nhắc máy</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>58. Bạn đánh giá cao điều gì trong mình hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q58" value="A">Cảm nhận tốt các yếu tố thực tế</label>
+                    <label><input type="radio" name="q58" value="B">Trí tưởng tượng phong phú, rực rỡ</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>59. Bạn dễ tâm hồn hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q59" value="A">Các nguyên tắc, nguyên lý cơ bản</label>
+                    <label><input type="radio" name="q59" value="B">Các ngụ ý, hàm ý, ẩn ý</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>60. Bạn không thích những người?</p>
+                <div class="options">
+                    <label><input type="radio" name="q60" value="A">Quá nóng nhiệt, thiết tha</label>
+                    <label><input type="radio" name="q60" value="B">Quá khách quan</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <div class="question">
+                <p>61. Bạn sẽ đánh giá mình là người thế nào?</p>
+                <div class="options">
+                    <label><input type="radio" name="q61" value="A">Thiết thực, ít bị chi phối bởi tình cảm</label>
+                    <label><input type="radio" name="q61" value="B">Tử tâm, đa cảm</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>62. Tính hướng nào sẽ lôi cuốn bạn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q62" value="A">Tính hướng rõ ràng, có kế hoạch</label>
+                    <label><input type="radio" name="q62" value="B">Tính hướng không xác định, không có kế hoạch</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>63. Bạn là người có xu hướng hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q63" value="A">Theo thói quen</label>
+                    <label><input type="radio" name="q63" value="B">Hãy thay đổi</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>64. Bạn có xu hướng?</p>
+                <div class="options">
+                    <label><input type="radio" name="q64" value="A">Là người dễ tiếp cận</label>
+                    <label><input type="radio" name="q64" value="B">Ở mức độ nào đó là người kín đáo</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>65. Khi viết, bạn thích?</p>
+                <div class="options">
+                    <label><input type="radio" name="q65" value="A">Viết theo hướng văn chương hơn</label>
+                    <label><input type="radio" name="q65" value="B">Viết theo số liệu, dữ liệu hơn</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>66. Điều gì khó thực hiện hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q66" value="A">Hiểu và chia sẻ với người khác</label>
+                    <label><input type="radio" name="q66" value="B">Sử dụng người khác</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>67. Bạn mong ước mình sẽ có thêm?</p>
+                <div class="options">
+                    <label><input type="radio" name="q67" value="A">Lí trí suy xét rõ ràng</label>
+                    <label><input type="radio" name="q67" value="B">Tính thương, lòng trắc ẩn sâu sắc</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>68. Điều gì sẽ là lỗi lớn hơn?</p>
+                <div class="options">
+                    <label><input type="radio" name="q68" value="A">Hành động bừa bãi, không cân nhắc</label>
+                    <label><input type="radio" name="q68" value="B">Hành động chỉ trích, phê phán</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>69. Bạn sẽ thích?</p>
+                <div class="options">
+                    <label><input type="radio" name="q69" value="A">Sự kiện có kế hoạch trước</label>
+                    <label><input type="radio" name="q69" value="B">Sự kiện không có kế hoạch trước</label>
+                </div>
+            </div>
+            <div class="question">
+                <p>70. Bạn thiên về xu hướng hành động?</p>
+                <div class="options">
+                    <label><input type="radio" name="q70" value="A">Cân nhắc cẩn trọng</label>
+                    <label><input type="radio" name="q70" value="B">Tự nhiên, tự phát</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit">Xem kết quả</button>
+    </form>
+
+    <div id="result-section">
+        <h2>Kết quả của bạn</h2>
+        <p>Loại tính cách của bạn là: <strong id="personality-type">...</strong></p>
+        <p>Nghề nghiệp phù hợp với bạn: <strong id="career-suggestions">...</strong></p>
+    </div>
+</div>
+
+<script>
+    document.getElementById('quiz-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const questions = form.querySelectorAll('.question');
+        const scores = {
+            'E': 0, 'I': 0,
+            'S': 0, 'N': 0,
+            'T': 0, 'F': 0,
+            'J': 0, 'P': 0
+        };
+
+        // Gán điểm cho các câu hỏi dựa trên các cặp đối lập E/I, S/N, T/F, J/P
+        const mapping = {
+            'E': [1, 8, 15, 29, 36, 43, 50, 57, 64],
+            'I': [1, 8, 15, 29, 36, 43, 50, 57, 64],
+            'S': [2, 10, 16, 23, 30, 37, 44, 51, 58, 65],
+            'N': [2, 10, 16, 23, 30, 37, 44, 51, 58, 65],
+            'T': [4, 12, 18, 25, 32, 38, 40, 46, 53, 54, 60, 61, 67, 68],
+            'F': [4, 12, 18, 25, 32, 38, 40, 46, 53, 54, 60, 61, 67, 68],
+            'J': [6, 7, 13, 14, 20, 27, 34, 41, 48, 55, 62, 69, 70],
+            'P': [6, 7, 13, 14, 20, 27, 34, 41, 48, 55, 62, 69, 70]
+        };
+
+        const answerMapping = {
+            'q1': {'A': 'E', 'B': 'I'}, 'q2': {'A': 'S', 'B': 'N'}, 'q3': {'A': 'P', 'B': 'J'},
+            'q4': {'A': 'T', 'B': 'F'}, 'q5': {'A': 'T', 'B': 'F'}, 'q6': {'A': 'J', 'B': 'P'},
+            'q7': {'A': 'J', 'B': 'P'}, 'q8': {'A': 'E', 'B': 'I'}, 'q9': {'A': 'S', 'B': 'N'},
+            'q10': {'A': 'S', 'B': 'N'}, 'q11': {'A': 'T', 'B': 'F'}, 'q12': {'A': 'T', 'B': 'F'},
+            'q13': {'A': 'J', 'B': 'P'}, 'q14': {'A': 'J', 'B': 'P'}, 'q15': {'A': 'E', 'B': 'I'},
+            'q16': {'A': 'S', 'B': 'N'}, 'q17': {'A': 'S', 'B': 'N'}, 'q18': {'A': 'T', 'B': 'F'},
+            'q19': {'A': 'T', 'B': 'F'}, 'q20': {'A': 'J', 'B': 'P'}, 'q21': {'A': 'J', 'B': 'P'},
+            'q22': {'A': 'E', 'B': 'I'}, 'q23': {'A': 'S', 'B': 'N'}, 'q24': {'A': 'S', 'B': 'N'},
+            'q25': {'A': 'T', 'B': 'F'}, 'q26': {'A': 'T', 'B': 'F'}, 'q27': {'A': 'J', 'B': 'P'},
+            'q28': {'A': 'J', 'B': 'P'}, 'q29': {'A': 'E', 'B': 'I'}, 'q30': {'A': 'T', 'B': 'F'},
+            'q31': {'A': 'J', 'B': 'P'}, 'q32': {'A': 'T', 'B': 'F'}, 'q33': {'A': 'T', 'B': 'F'},
+            'q34': {'A': 'J', 'B': 'P'}, 'q35': {'A': 'J', 'B': 'P'}, 'q36': {'A': 'E', 'B': 'I'},
+            'q37': {'A': 'S', 'B': 'N'}, 'q38': {'A': 'T', 'B': 'F'}, 'q39': {'A': 'T', 'B': 'F'},
+            'q40': {'A': 'T', 'B': 'F'}, 'q41': {'A': 'P', 'B': 'J'}, 'q42': {'A': 'J', 'B': 'P'},
+            'q43': {'A': 'E', 'B': 'I'}, 'q44': {'A': 'S', 'B': 'N'}, 'q45': {'A': 'S', 'B': 'N'},
+            'q46': {'A': 'T', 'B': 'F'}, 'q47': {'A': 'T', 'B': 'F'}, 'q48': {'A': 'J', 'B': 'P'},
+            'q49': {'A': 'P', 'B': 'J'}, 'q50': {'A': 'E', 'B': 'I'}, 'q51': {'A': 'S', 'B': 'N'},
+            'q52': {'A': 'S', 'B': 'N'}, 'q53': {'A': 'T', 'B': 'F'}, 'q54': {'A': 'T', 'B': 'F'},
+            'q55': {'A': 'J', 'B': 'P'}, 'q56': {'A': 'T', 'B': 'F'}, 'q57': {'A': 'E', 'B': 'I'},
+            'q58': {'A': 'S', 'B': 'N'}, 'q59': {'A': 'S', 'B': 'N'}, 'q60': {'A': 'F', 'B': 'T'},
+            'q61': {'A': 'T', 'B': 'F'}, 'q62': {'A': 'J', 'B': 'P'}, 'q63': {'A': 'J', 'B': 'P'},
+            'q64': {'A': 'E', 'B': 'I'}, 'q65': {'A': 'N', 'B': 'S'}, 'q66': {'A': 'T', 'B': 'F'},
+            'q67': {'A': 'T', 'B': 'F'}, 'q68': {'A': 'P', 'B': 'J'}, 'q69': {'A': 'J', 'B': 'P'},
+            'q70': {'A': 'J', 'B': 'P'}
+        };
+
+        let allAnswered = true;
+        for (let i = 1; i <= 70; i++) {
+            const questionName = `q${i}`;
+            const selectedOption = form.querySelector(`input[name="${questionName}"]:checked`);
+            if (selectedOption) {
+                const type = answerMapping[questionName][selectedOption.value];
+                scores[type]++;
+            } else {
+                allAnswered = false;
+            }
+        }
+
+        if (!allAnswered) {
+            alert('Vui lòng trả lời tất cả các câu hỏi.');
+            return;
+        }
+
+        const personalityType = 
+            (scores['E'] > scores['I'] ? 'E' : 'I') +
+            (scores['S'] > scores['N'] ? 'S' : 'N') +
+            (scores['T'] > scores['F'] ? 'T' : 'F') +
+            (scores['J'] > scores['P'] ? 'J' : 'P');
+
+        const careers = getCareerSuggestions(personalityType);
+
+        document.getElementById('personality-type').textContent = personalityType;
+        document.getElementById('career-suggestions').textContent = careers;
+        document.getElementById('result-section').style.display = 'block';
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    });
+
+    function getCareerSuggestions(type) {
+        const careerMap = {
+            'ISTJ': 'Kế toán, Cảnh sát, Luật sư, Lập trình viên, Quản lý dự án',
+            'ISFJ': 'Giáo viên, Y tá, Thư ký, Công tác xã hội, Thủ thư',
+            'INFJ': 'Nhà tâm lý học, Cố vấn, Nhà văn, Thiết kế đồ họa, Chuyên viên nhân sự',
+            'INTJ': 'Kiến trúc sư, Nhà khoa học, Kỹ sư phần mềm, Nhà phân tích tài chính',
+            'ISTP': 'Cơ khí, Thợ thủ công, Phi công, Lính cứu hỏa, Vận động viên',
+            'ISFP': 'Nghệ sĩ, Nhạc sĩ, Thiết kế thời trang, Bác sĩ thú y, Y tá chăm sóc',
+            'INFP': 'Nhà văn, Nhà thơ, Cố vấn, Nhà trị liệu, Chuyên gia dinh dưỡng',
+            'INTP': 'Nhà khoa học, Kỹ sư, Lập trình viên, Nhà triết học, Giáo sư đại học',
+            'ESTP': 'Nhà kinh doanh, Tiếp thị, Bán hàng, Chuyên gia thể thao, Cảnh sát',
+            'ESFP': 'Diễn viên, Nghệ sĩ, Hướng dẫn viên du lịch, Tổ chức sự kiện, Huấn luyện viên thể hình',
+            'ENFP': 'Nhà báo, Diễn giả, Diễn viên, Nhà tư vấn, Chuyên gia tiếp thị',
+            'ENTP': 'Doanh nhân, Luật sư, Lập trình viên, Kỹ sư, Nhà tư vấn',
+            'ESTJ': 'Quản lý, Cảnh sát, Giám đốc, Kế toán, Chuyên gia tài chính',
+            'ESFJ': 'Giáo viên, Quản lý sự kiện, Y tá, Công tác xã hội, Chuyên gia bán hàng',
+            'ENFJ': 'Huấn luyện viên, Giáo viên, Nhà diễn thuyết, Cố vấn, Chuyên gia nhân sự',
+            'ENTJ': 'Giám đốc điều hành, Doanh nhân, Luật sư, Lãnh đạo, Chuyên gia phân tích'
+        };
+        return careerMap[type] || 'Không có gợi ý cụ thể. Hãy khám phá thêm!';
+    }
+</script>
+
+</body>
+</html>
